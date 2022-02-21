@@ -1,2 +1,3 @@
 # vueducks
-all kinds of duck example for vue and maybe nodejs too
+All kinds of duck example for vue and maybe nodejs too.
+
