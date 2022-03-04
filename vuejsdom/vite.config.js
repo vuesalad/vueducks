@@ -2,7 +2,7 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-import Components from 'unplugin-vue-components/vite'
+
 
 
 const pathSrc = path.resolve(__dirname, 'src')
@@ -14,16 +14,9 @@ export default defineConfig({
       '~/': `${pathSrc}/`,
     },
   },
-  css: {
-    preprocessorOptions: {
-    }
  
-  },
   plugins: [
-      vue(),
-      Components({
-        dts: path.resolve(pathSrc, 'components.d.ts'),
-      }),
+      vue()
   
   ],
   build: {
