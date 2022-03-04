@@ -23,7 +23,8 @@ export default defineConfig({
         minify : false
   },
   server :{
-        host:true
+        host:true,
+        port:3002
   }
 
 })
