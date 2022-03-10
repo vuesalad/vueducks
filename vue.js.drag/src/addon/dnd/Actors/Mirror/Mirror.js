@@ -164,6 +164,10 @@ export default class Mirror extends AbstractPlugin {
     }
 
     const appendableContainer = this[getAppendableContainer](source) || sourceContainer;
+    
+    /***TBC */
+    console.log("appendableContainer", appendableContainer)
+
     this.mirror = source.cloneNode(true);
 
     const mirrorCreatedEvent = new MirrorCreatedEvent({
@@ -186,7 +190,13 @@ export default class Mirror extends AbstractPlugin {
 
     this.draggable.trigger(mirrorCreatedEvent);
     appendableContainer.appendChild(this.mirror);
+
+    console.log ('mirror when onDragStart after attached', this.mirror);
+
     this.draggable.trigger(mirrorAttachedEvent);
+
+    /**TBD  */
+    console.log ('mirror when onDragStart before return', this.mirror);
   }
 
   [onDragMove](dragEvent) {
@@ -214,6 +224,9 @@ export default class Mirror extends AbstractPlugin {
         this.lastMirrorMovedClient.y = sensorEvent.clientY;
       }
 
+      /**TBD */
+      console.log ('mirror when onDragMove  almost end', this.mirror);
+
       if (!passedThreshX && !passedThreshY) {
         return;
       }
@@ -230,7 +243,12 @@ export default class Mirror extends AbstractPlugin {
       passedThreshY,
     });
 
+    /**TBD */
+    console.log ('mirror when onDragMove, trans dragMove to MirrorMove', this.mirror, mirrorMoveEvent);
+
     this.draggable.trigger(mirrorMoveEvent);
+     /**TBD */
+     console.log ('mirror when onDragMove', this.mirror);
   }
 
   [onDragStop](dragEvent) {
@@ -240,6 +258,9 @@ export default class Mirror extends AbstractPlugin {
 
     this.initialScrollOffset = {x: 0, y: 0};
     this.scrollOffset = {x: 0, y: 0};
+
+     /**TBD */
+     console.log ('mirror when onDragStop', this.mirror);
 
     if (!this.mirror) {
       return;
@@ -299,6 +320,9 @@ export default class Mirror extends AbstractPlugin {
       passedThreshX: true,
       passedThreshY: true,
     };
+
+     /**TBD */
+     console.log ('mirror when onDragCreated', this.mirror);
 
     return (
       Promise.resolve(initialState)
@@ -528,10 +552,14 @@ function positionMirror({withFrame = false, initial = false} = {}) {
         };
 
         if (mirrorOffset) {
+
+          console.log(passedThreshX, sensorEvent.clientX,mirrorOffset.left, scrollOffset.x, options.thresholdX, lastMovedX )
           const x = passedThreshX
             ? Math.round((sensorEvent.clientX - mirrorOffset.left - scrollOffset.x) / (options.thresholdX || 1)) *
               (options.thresholdX || 1)
             : Math.round(lastMovedX);
+
+          console.log(passedThreshY, sensorEvent.clientY ,mirrorOffset.top, scrollOffset.y, options.thresholdY, lastMovedY )
           const y = passedThreshY
             ? Math.round((sensorEvent.clientY - mirrorOffset.top - scrollOffset.y) / (options.thresholdY || 1)) *
               (options.thresholdY || 1)
@@ -553,6 +581,9 @@ function positionMirror({withFrame = false, initial = false} = {}) {
           result.lastMovedX = x;
           result.lastMovedY = y;
         }
+
+        /**TBD  */
+        console.log ('after position the mirror ', mirror);
 
         resolve(result);
       },
