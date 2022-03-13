@@ -1,9 +1,11 @@
 {
   "name": "sworks-word-csv",
   "version": "1.0.0",
-  "description": "word list by csv",
+  "description": "word list by csv, basic infra   nodejs + src: all ts",
   "scripts": {
     "start": "npx tsc  && node dist/main.js",
+    "util": "npx tsc  && node dist/filelist.js",
+    "filecontent": "npx tsc && node dist/filecontent.js",
     "test:unit": "jest --coverage",
     "test:onlychanged": "jest --onlyChanged --coverage",
     "lint": "standard",
@@ -15,7 +17,10 @@
   "author": "Saladworks",
   "license": "MIT",
   "dependencies": {
-    "csv-parser": "^3.0.0"
+    "csv": "^6.0.5",
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.0.5",
+    "iconv-lite": "^0.6.3"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
