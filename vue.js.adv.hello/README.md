@@ -14,3 +14,7 @@ find . -type d -name node_modules -prune -o -name '*.js' -print  -exec grep "@dn
 ###
  * from vue.js.drag
  * from nodejs.simple
+
+### Known issues
+
+#### vitest coverage report is not accurate  : "vitest": "^0.7.6"
